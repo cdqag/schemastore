@@ -165,63 +165,29 @@
         "type": "string"
       },
       "properties": {
-        "artifacthub.io/changes": {
-          "description": "This annotation is used to provide some details about the changes introduced by a given chart version. Artifact Hub can generate and display a ChangeLog based on the entries in the changes field in all your chart versions.\nThis annotation can be provided using two different formats: using a plain list of strings with the description of the change or using a list of objects with some extra structured information (see example below). Please feel free to use the one that better suits your needs. The UI experience will be slightly different depending on the choice. When using the list of objects option the valid supported kinds are added, changed, deprecated, removed, fixed and security.",
+        "cdq.com/argocd.app.name": {
+          "description": "This is the name of the ArgoCD application that will be created for this chart. If not provided, the name of the chart will be used.",
           "type": "string"
         },
-        "artifacthub.io/containsSecurityUpdates": {
-          "description": "Use this annotation to indicate that this chart version contains security updates. When a package release contains security updates, a special message will be displayed in the Artifact Hub UI as well as in the new release email notification.",
-          "enum": ["true", "false"]
+        "cdq.com/argocd.app.imageTagPath": {
+          "description": "What is the path of image tag that should be updated.",
+          "type": "string",
+          "default": "baseChart.image.tag"
         },
-        "artifacthub.io/crds": {
-          "description": "By default, Artifact Hub will try to extract the containers images used by Helm charts from the manifests generated from a dry-run install using the default values. If you prefer, you can also provide a list of containers images manually by using this annotation.\nContainers images will be scanned for security vulnerabilities. The security report generated will be available in the package detail view. It is possible to whitelist images so that they are not scanned by setting the whitelisted flag to true.",
-          "type": "string"
+        "cdq.com/argocd.app.syncTimeout": {
+          "description": "Sync command timeout",
+          "type": "string",
+          "default": "900"
         },
-        "artifacthub.io/images": {
-          "description": "This annotation can be used to list the operator's CRDs. They will be visible in the package's detail view as cards.",
-          "type": "string"
+        "cdq.com/argocd.app.waitTimeout": {
+          "description": "Wait command timeout",
+          "type": "string",
+          "default": "300"
         },
-        "artifacthub.io/crdsExamples": {
-          "description": "Use this annotation to provide a list of example CRs for the operator's CRDs. Each of the examples can be opened from the corresponding CRD card in the package's detail view.",
-          "type": "string"
-        },
-        "artifacthub.io/license": {
-          "description": "Use this annotation to indicate the chart's license. By default, Artifact Hub tries to read the chart's license from the LICENSE file in the chart, but it's possible to override or provide it with this annotation. It must be a valid SPDX identifier.",
-          "type": "string"
-        },
-        "artifacthub.io/links": {
-          "description": "This annotation allows including named links, which will be rendered nicely in Artifact Hub. You can use this annotation to include links not included previously in the Chart.yaml file, or you can use it to name links already present (in the sources section, for example).",
-          "type": "string"
-        },
-        "artifacthub.io/maintainers": {
-          "description": "This annotation can be used if you want to display a different name for a given user in Artifact Hub than the one used in the Chart.yaml file. If the email used matches, the name used in the annotations entry will be displayed in Artifact Hub. It's also possible to include maintainers that should only be listed in Artifact Hub by adding additional entries.",
-          "type": "string"
-        },
-        "artifacthub.io/operator": {
-          "description": "Use this annotation to indicate that your chart represents an operator. Artifact Hub at the moment also considers your chart to represent an operator if the word operator appears in the chart name.",
-          "enum": ["true", "false"]
-        },
-        "artifacthub.io/operatorCapabilities": {
-          "description": "Use this annotation to indicate the capabilities of the operator your chart provides. It must be one of the following options: Basic Install, Seamless Upgrades, Full Lifecycle, Deep Insights or Auto Pilot. For more information please see the capability level diagram.",
-          "enum": [
-            "Basic Install",
-            "Seamless Upgrades",
-            "Full Lifecycle",
-            "Deep Insights",
-            "Auto Pilot"
-          ]
-        },
-        "artifacthub.io/prerelease": {
-          "description": "Use this annotation to indicate that this chart version is a pre-release. This status will be displayed in the UI's package view, as well as in new releases notifications emails.",
-          "enum": ["true", "false"]
-        },
-        "artifacthub.io/recommendations": {
-          "description": "This annotation allows recommending other related packages. Recommended packages will be featured in the package detail view in Artifact Hub.",
-          "type": "string"
-        },
-        "artifacthub.io/signKey": {
-          "description": "This annotation can be used to provide some information about the key used to sign a given chart version. This information will be displayed on the Artifact Hub UI, making it easier for users to get the information they need to verify the integrity and origin of your chart. The url field indicates where users can find the public key and it is mandatory when a sign key entry is provided.",
-          "type": "string"
+        "cdq.com/argocd.app.syncRetryLimit": {
+          "description": "Sync command retry limit",
+          "type": "string",
+          "default": "2"
         }
       }
     }
